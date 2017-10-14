@@ -13,16 +13,14 @@ namespace ApplicationCore.Entities
     [Table("CarBrands")]
     public class CarBrand:BaseEntity
     {
+        public  override int Id { get; set; }
         /// <summary>
         /// 品牌名字
-        /// </summary>
-        [Required]
-        [Column("BrandName")]
-        public string BrandName { get; set; }
+        /// </summary> 
+        public string  Name { get; set; }
 
         
-        [LeftJoin("Cars", "Id", "CarBrandId")] 
-        public List<Car> Cars { get; set; }
+        
 
 
         public CarBrand()

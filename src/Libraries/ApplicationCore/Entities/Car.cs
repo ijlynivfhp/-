@@ -14,9 +14,10 @@ namespace ApplicationCore.Entities
     /// </summary>
     [Table("Cars")]
     public class Car:BaseEntity
-    { 
+    {
+        public override int Id { get; set; }
         [Required]
-        public string CName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 不用在数据库创建字段

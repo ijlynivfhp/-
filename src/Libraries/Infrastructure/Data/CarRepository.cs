@@ -20,8 +20,8 @@ namespace Infrastructure.Data
 
         public IReadOnlyList<Car> GetListByCarBrandName(string name)
         {
-            var list = base.FindAll(x => x.CarBrand.BrandName.Contains(name));
-            return list.ToList();
+            var list = base.FindAll(x => x.CarBrand.Name.Contains(name));
+            return list.ToList();  
         }
     }
 }

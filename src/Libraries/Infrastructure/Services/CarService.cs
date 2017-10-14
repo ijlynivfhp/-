@@ -24,7 +24,7 @@ namespace Infrastructure.Services
         {
             var car = new Car();
             car.CarBrandId = CarBrandId;
-            car.CName = name;
+            car.Name = name;
       
              
             return _carRepository.InsertAsync(car);
@@ -37,7 +37,7 @@ namespace Infrastructure.Services
 
         public new Car Get(int id)
         { 
-            return _carRepository.FindById<CarBrand>( id, e=>e.CarBrand);
+            return _carRepository.FindById<CarBrand>(id, e=>e.CarBrand);
         }
 
     }

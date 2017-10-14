@@ -17,10 +17,7 @@ namespace WebApp.Controllers
     {
         private readonly ICarBrandService _carBrandService;
         private readonly ICarService _carService;
-
-        private ICarRepository _repo;
-
-
+          
 
         /// <summary>
         /// 构造注入 不懂的自己百度脑补（构造器注入的编程方式） 哈哈
@@ -36,10 +33,7 @@ namespace WebApp.Controllers
         {
             this._carBrandService = carBrandService;
             this._carService = carService;
-
-            
-
-            
+             
         }
 
         public async Task< IActionResult> Index()

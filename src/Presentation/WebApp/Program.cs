@@ -7,13 +7,17 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ApplicationCore.Services;
 
 namespace WebApp
 {
     public class Program
     {
+         
+
         public static void Main(string[] args)
-        {
+        { 
+         
             BuildWebHost(args).Run();
         }
 
