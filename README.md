@@ -16,5 +16,5 @@
 Repositories CRUD for Dapper  (dapper的仓储模式)：
 [Repositories CRUD for Dapper](http://http://dapper.phnx47.net/)
 
-微软eShopOnWeb框架：
-https://github.com/dotnet-architecture/eShopOnWeb.git
+微软eShopOnWeb框架：[eShopOnWeb](http://https://github.com/dotnet-architecture/eShopOnWeb.git)
+
