@@ -33,7 +33,19 @@ namespace ApplicationCore.Services
         TEntity Get(TKey id);
 
         TEntity Find(Expression<Func<TEntity, bool>> predicate);
+		/// <summary>
+		/// 分页
+		/// </summary>
+		/// <param name="predicate"></param>
+		/// <returns></returns>
+		QueryPageParameter FindWithPages(Expression<Func<TEntity, bool>> predicate, Func<TEntity, object> order,   QueryPageParameter queryPage);
 
-         
-    }
+		Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
+		/// <summary>
+		/// 分页
+		/// </summary>
+		/// <param name="predicate"></param>
+		/// <returns></returns>
+		Task<QueryPageParameter> FindWithPagesAsync(Expression<Func<TEntity, bool>> predicate, Func<TEntity, object> order,  QueryPageParameter queryPage);
+	}
 }

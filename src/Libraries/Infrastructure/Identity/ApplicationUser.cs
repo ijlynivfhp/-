@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
- 
+using System.Security.Principal;
+
 namespace Infrastructure.Identity
 {
-	public class ApplicationUser  
-	{
-		public string Id { get; set; }
-
-		public string UserName { get; set; }
-
-		public string Pwd { get; set; }
-	}
+    public class ApplicationUser : IIdentity
+    {
+        public virtual Guid Id { get; set; } = Guid.NewGuid();
+        public virtual string UserName { get; set; }
+        public virtual string Email { get; set; }
+        public virtual bool EmailConfirmed { get; set; }
+        public virtual String PasswordHash { get; set; }
+        public string NormalizedUserName { get; internal set; }
+        public string AuthenticationType { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public string Name { get; set; }
+    }
 }

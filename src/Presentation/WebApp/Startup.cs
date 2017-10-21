@@ -15,6 +15,9 @@ using MicroOrm.Dapper.Repositories.SqlGenerator;
 using ApplicationCore.Entities;
 using ApplicationCore.Services;
 using MicroOrm.Dapper.Repositories;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using Infrastructure.Logging;
 
 namespace WebApp
 {
@@ -31,23 +34,36 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //数据库相关
-            services.AddSingleton<IDbConnection > (new SqlConnection(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<ISqlGenerator<Car>>(new SqlGenerator<Car>(ESqlConnector.MSSQL));
-            services.AddSingleton<ISqlGenerator<CarBrand>>(new SqlGenerator<CarBrand>(ESqlConnector.MSSQL));
+			// Add identity types
+			services.AddIdentity<ApplicationUser, ApplicationRole>()
+				.AddDefaultTokenProviders();
+
+			// Identity Services
+			services.AddTransient<IUserStore<ApplicationUser>, IdentityUserStore>();
+			services.AddTransient<IRoleStore<ApplicationRole>, IdentityRoleStore>(); 
 
 
-            //注册仓储
-            services.AddScoped<ICarRepository, CarRepository>();
-            services.AddScoped<ICarBrandRepository, CarBrandRepository>();
-            services.AddSingleton<IDapperRepository<Car>, DapperRepository<Car>>();
+			//数据库相关  
+			services.AddSingleton(typeof(IDbConnection), new SqlConnection(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddSingleton(typeof(IIdentityDbConnection),new SqlConnection(Configuration.GetConnectionString("IdentityConnection")));
+			services.AddSingleton(typeof(ISqlGenerator<>), typeof(SqlGenerator<>));
+			 
+			//注册仓储
+			services.AddSingleton(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+			services.AddSingleton(typeof(IDapperRepository<>), typeof(DapperRepository<>));
+			services.AddSingleton<ICarBrandRepository, CarBrandRepository>();
+			services.AddSingleton<ICarRepository, CarRepository>();
 
-            //注册服务
-            services.AddScoped<ICarService, CarService>();
-            services.AddScoped<ICarBrandService,CarBrandService>();
+			//注册服务
+			services.AddSingleton(typeof(IBaseService<>), typeof(BaseService<>));
+			services.AddSingleton<ICarBrandService, CachedCarBrandService>();//实现缓存功能
+			services.AddSingleton<ICarService, CachedCarService>();//实现缓存功能
 
-            services.AddMvc();
-             
+			services.AddSingleton(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+			// Add memory cache services
+			services.AddMemoryCache();
+			services.AddMvc(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

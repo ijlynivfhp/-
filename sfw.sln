@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9EEB549-E522-4F97-A529-A1A02433F353}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		建表 - Identity.sql = 建表 - Identity.sql
 		建表.sql = 建表.sql
 		说明.txt = 说明.txt
 	EndProjectSection
@@ -24,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{523F12C9-6B3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E09FAD66-E6A2-43AE-8103-2F1687209047}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sfw.test", "test\sfw.test\sfw.test.csproj", "{48BF793F-74E0-45A6-82A2-24903954F6F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sfw.test", "test\sfw.test\sfw.test.csproj", "{48BF793F-74E0-45A6-82A2-24903954F6F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

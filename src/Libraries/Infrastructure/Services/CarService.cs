@@ -20,7 +20,7 @@ namespace Infrastructure.Services
            
         }
 
-        public Task CreateAsync(string name, int CarBrandId)
+        public virtual Task<bool> CreateAsync(string name, int CarBrandId)
         {
             var car = new Car();
             car.CarBrandId = CarBrandId;
@@ -30,15 +30,20 @@ namespace Infrastructure.Services
             return _carRepository.InsertAsync(car);
         }
 
-        public List<Car> GetAllList()
+        public virtual List<Car> GetAllList()
         {
             return _carRepository.FindAll().ToList();
         }
 
-        public new Car Get(int id)
+        public virtual new Car Get(int id)
         { 
             return _carRepository.FindById<CarBrand>(id, e=>e.CarBrand);
         }
 
-    }
+		public virtual Task<IEnumerable<Car>> GetListByBrandName(string brandName)
+		{
+			var brand = _carBrandRepository.Find(x=>x.Name==brandName);
+			return _carRepository.FindAllAsync<CarBrand>(x=>x.CarBrandId== brand.Id, e => e.CarBrand);
+		}
+	}
 }

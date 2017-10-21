@@ -10,6 +10,7 @@ using System.Data;
 using ApplicationCore.Services;
 using ApplicationCore.Entities;
 using MicroOrm.Dapper.Repositories;
+using ApplicationCore;
 
 namespace WebApp.Controllers
 {
@@ -43,11 +44,12 @@ namespace WebApp.Controllers
 
            var list = _carService.GetAllList();
 
-            
+			var pages = new QueryPageParameter { PageIndex = 1, PageSize = 3 };
 
-           var bCar = _carService.Get(3);
 
-            ViewBag.car = bCar;
+		   var bCars =await _carService.FindWithPagesAsync(x=>x.Id>4,null,  pages);
+
+            ViewBag.car = bCars;
 
             return View();
         }

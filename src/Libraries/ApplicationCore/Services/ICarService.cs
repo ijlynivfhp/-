@@ -9,6 +9,8 @@ namespace ApplicationCore.Services
     {
         List<Car> GetAllList();
 
-        Task CreateAsync(string name, int CarBrandId);
-    }
+        Task<bool> CreateAsync(string name, int CarBrandId);
+
+		Task<IEnumerable<Car>> GetListByBrandName(string brandName );
+	}
 }
